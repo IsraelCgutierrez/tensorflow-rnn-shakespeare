@@ -244,7 +244,7 @@ def read_data_files(directory, validation=True):
     """
     codetext = []
     bookranges = []
-    shakelist = glob.glob(directory, recursive=True)
+    shakelist = glob.glob(directory, recursive=True) # returns just the file names
     for shakefile in shakelist:
         shaketext = open(shakefile, "r")
         print("Loading file " + shakefile)
