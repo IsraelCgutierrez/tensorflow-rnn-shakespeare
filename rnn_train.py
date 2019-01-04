@@ -46,7 +46,7 @@ learning_rate = 0.001  # fixed learning rate
 dropout_pkeep = 0.8    # some dropout
 
 # load data, either shakespeare, or the Python source of Tensorflow itself
-shakedir = "BIN_DATA/uk/*.txt"
+shakedir = "BIN_DATA/*.txt"
 #shakedir = "../tensorflow/**/*.py"
 codetext, valitext, bookranges = txt.read_data_files(shakedir, validation=False)
 
@@ -179,7 +179,7 @@ for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_
 
     # save a checkpoint (every 500 batches)
     if step // 10 % _50_BATCHES == 0:
-        saved_file = saver.save(sess, 'checkpoints/rnn_train_CN' + timestamp, global_step=step)
+        saved_file = saver.save(sess, 'checkpoints/rnn_train_BIN' + timestamp, global_step=step)
         print("Saved file: " + saved_file)
 
     # display progress bar
