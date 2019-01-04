@@ -96,7 +96,7 @@ def sample_from_probabilities(probabilities, topn=ALPHASIZE):
     return np.random.choice(ALPHASIZE, 1, p=p)[0]
 
 
-def rnn_minibatch_sequencer(raw_data, batch_size, sequence_size, nb_epochs):
+def rnn_minibatch_sequencer(raw_data, batch_size, sequence_size, bookranges, nb_epochs):
     """
     Divides the data into batches of sequences so that all the sequences in one batch
     continue in the next batch. This is a generator that will keep returning batches
@@ -119,6 +119,9 @@ def rnn_minibatch_sequencer(raw_data, batch_size, sequence_size, nb_epochs):
     assert nb_batches > 0, "Not enough data, even for a single batch. Try using a smaller batch_size."
     rounded_data_len = nb_batches * batch_size * sequence_size
     xdata = np.reshape(data[0:rounded_data_len], [batch_size, nb_batches * sequence_size])
+
+    # bookname = find_book(batch * sequence_size, bookranges)
+
     ydata = np.reshape(data[1:rounded_data_len + 1], [batch_size, nb_batches * sequence_size])
 
     for epoch in range(nb_epochs):
